@@ -45,9 +45,20 @@ digit := '0'..'9'
 
 const int err = 0x12345678;
 
+void YIKC_TEST_2::space__()
+{
+	while ((*G_ptr == 32))
+	{
+		G_ptr++;
+	}
+}
+
 double YIKC_TEST_2::exp__()
 {
+
 	double term_ = term__();
+
+	space__();
 
 	while ((*G_ptr == '+') || (*G_ptr == '-'))
 	{
@@ -69,6 +80,8 @@ double YIKC_TEST_2::term__()
 {
 	double factor_ = factor__();
 
+	space__();
+
 	while ((*G_ptr == '*') || (*G_ptr == '/'))
 	{
 		if (*G_ptr == '*')
@@ -87,8 +100,8 @@ double YIKC_TEST_2::term__()
 
 double YIKC_TEST_2::factor__()
 {
-	//double number_ = 0;
-	double number_ = number__();
+	double number_ = number__();	
+	space__();
 	if (G_index > 0) 
 	{
 		number_ = number_ / pow(10,G_index);
@@ -124,6 +137,7 @@ double YIKC_TEST_2::factor__()
 double YIKC_TEST_2::number__()
 {
 	double digit_ = digit__();
+	space__();
 	G_index = 0;
 	if ( (*G_ptr == '.') )
 	{
@@ -146,6 +160,7 @@ double YIKC_TEST_2::number__()
 double YIKC_TEST_2::digit__()
 {
 	int digit = 0;
+	space__();
 
 	while (1)
 	{
@@ -165,6 +180,7 @@ double YIKC_TEST_2::TG__(const char* str_TG)
 {
 	//position
 	G_ptr = str_TG;
+	space__();
 	TG_result = exp__();
 	
 	return TG_result;

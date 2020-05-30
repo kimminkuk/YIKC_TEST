@@ -31,6 +31,7 @@ public:
 	double factor__();
 	double number__();
 	double digit__();
+	void space__();
 
 	double G_index;
 	double TG_result;

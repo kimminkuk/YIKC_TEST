@@ -24,7 +24,7 @@ int main()
     
 	double result[4] = { 0 };
 	
-	result[0] = TEST2.TG__("2+3");
+	result[0] = TEST2.TG__(" 2 + 3 ");
 	result[1] = TEST2.TG__("2*(3+4)");
 	result[2] = TEST2.TG__("1.0/0.5");
 	result[3] = TEST2.TG__("345/12");
