@@ -23,12 +23,17 @@ class YIKC_TEST_2
 	
 public:
 	YIKC_TEST_2();
-	double term(string str_term);
-	double exp(string str_exp);
-	double factor(string str_factor);
-	double number(string str_number);
 	double SETERROR();
-	double TG(string str_TG);
-	int digit(string str_digit);
+
+	double TG__(const char* str_TG);
+	double exp__();
+	double term__();
+	double factor__();
+	double number__();
+	double digit__();
+
+	double G_index;
+	double TG_result;
+	const char* G_ptr;
 };
 

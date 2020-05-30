@@ -45,56 +45,129 @@ digit := '0'..'9'
 
 const int err = 0x12345678;
 
-double YIKC_TEST_2::exp(string str_exp)
+double YIKC_TEST_2::exp__()
 {
-	double term_= term(str_exp);
-	
-	if ('+') term_ = term_ + term(str_exp);
-	else if ('-') term_ = term_ - term(str_exp);
-	else return term_;
+	double term_ = term__();
+
+	while ((*G_ptr == '+') || (*G_ptr == '-'))
+	{
+		if (*G_ptr == '+') 
+		{
+			G_ptr++;
+			term_ = term_ + term__();
+		}
+		else if (*G_ptr == '-')
+		{
+			G_ptr++;
+			term_ = term_ - term__();
+		}
+	}
+	return term_;
 }
 
-double YIKC_TEST_2::term(string str_term)
+double YIKC_TEST_2::term__()
 {
-	double factor_ = factor(str_term);
-	if ('*') factor_ = factor_ * factor(str_term);
-	else if ('/') factor_ = factor_ / factor(str_term);
-	else return factor_;
+	double factor_ = factor__();
+
+	while ((*G_ptr == '*') || (*G_ptr == '/'))
+	{
+		if (*G_ptr == '*')
+		{
+			G_ptr++;
+			factor_ = factor_ * term__();
+		}
+		else if (*G_ptr == '/')
+		{
+			G_ptr++;
+			factor_ = factor_ / term__();
+		}
+	}
+	return factor_;
 }
 
-double YIKC_TEST_2::factor(string str_factor)
+double YIKC_TEST_2::factor__()
 {
-	double number_ = number(str_factor);
+	//double number_ = 0;
+	double number_ = number__();
+	if (G_index > 0) 
+	{
+		number_ = number_ / pow(10,G_index);
+	}
+	if (*G_ptr == '(') 
+	{
+		G_ptr++;
+		number_ = exp__();
+		if (*G_ptr == ')')
+		{
+			G_ptr++;
+			return number_;
+		}
+	}
+	else if ( (*G_ptr >= '0') && (*G_ptr <= '9') ) 
+	{
+		while(1)
+		{
+			if ((*G_ptr >= '0') && (*G_ptr <= '9'))
+			{
+				number_ = number_ * 10;
+				number_ = number_ + (*G_ptr - '0');
+				G_ptr++;
+			}
+			else break;
+		}
+		return number_;
+	}
 
-	return 0;
+	return number_;
 }
 
-double YIKC_TEST_2::number(string str_nubmer)
+double YIKC_TEST_2::number__()
 {
-	double num = digit(str_nubmer);
-
-//	if (num >= 48 && num <= 57) num = atof(str_number.c_str());
-	return 0;
+	double digit_ = digit__();
+	G_index = 0;
+	if ( (*G_ptr == '.') )
+	{
+		G_ptr++;
+		while (1)
+		{
+			if ((*G_ptr >= '0') && (*G_ptr <= '9'))
+			{
+				digit_ = digit_ * 10;
+				digit_ = digit_ + (*G_ptr - '0');
+				G_ptr++;
+				G_index++;
+			}
+			else break;
+		}
+	}
+	return digit_;
 }
 
-int YIKC_TEST_2::digit(string str_digit)
+double YIKC_TEST_2::digit__()
 {
-	//int digit = 
-	return 0;
-}
+	int digit = 0;
 
-double YIKC_TEST_2::TG(string str_TG)
-{
-	double get = str_TG[0];
-	printf("str[0]:%f str[1]:%c str[2]:%c \n", get,str_TG[1],str_TG[2]);
-	
-	int len = str_TG.length();
-	for (int i = 0; i < len; i++) {
-		exp(str_TG.c_str());
+	while (1)
+	{
+		if ((*G_ptr >= '0') && (*G_ptr <= '9'))
+		{
+			digit = digit * 10;
+			digit = digit + (*G_ptr - '0');
+			G_ptr++;
+		}
+		else break;
 	}
 	
-	printf("strlen:%d\n", len);
-	return 0;
+	return digit;
+}
+
+double YIKC_TEST_2::TG__(const char* str_TG)
+{
+	//position
+	G_ptr = str_TG;
+	TG_result = exp__();
+	
+	return TG_result;
 }
 
 double YIKC_TEST_2::SETERROR()
@@ -105,5 +178,7 @@ double YIKC_TEST_2::SETERROR()
 
 YIKC_TEST_2::YIKC_TEST_2()
 {
-
+	G_index = 0;
+	G_ptr = NULL;
+	TG_result = 0;
 }

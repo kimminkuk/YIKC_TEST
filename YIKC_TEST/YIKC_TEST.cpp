@@ -22,11 +22,17 @@ int main()
 	YIKC_TEST_1();
 	YIKC_TEST_2 TEST2;
     
-	TEST2.TG("2+3");
+	double result[4] = { 0 };
 	
-		
-	//YIKC_TEST_3();
-	//YIKC_TEST_4();
+	result[0] = TEST2.TG__("2+3");
+	result[1] = TEST2.TG__("2*(3+4)");
+	result[2] = TEST2.TG__("1.0/0.5");
+	result[3] = TEST2.TG__("345/12");
+	
+	printf("1 %f\n", result[0]);
+	printf("2 %f\n", result[1]);
+	printf("3 %f\n", result[2]);
+	printf("4 %f\n", result[3]);
 }
 
 // 프로그램 실행: <Ctrl+F5> 또는 [디버그] > [디버깅하지 않고 시작] 메뉴
