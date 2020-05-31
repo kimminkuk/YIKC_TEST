@@ -148,10 +148,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="YIKC_0521.cpp" />
+    <ClCompile Include="YIKC_TEST_1.cpp" />
     <ClCompile Include="YIKC_TEST.cpp" />
     <ClCompile Include="YIKC_TEST_2.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="YIKC_TEST_1.h" />
     <ClInclude Include="YIKC_TEST.h" />
     <ClInclude Include="YIKC_TEST_2.h" />
   </ItemGroup>

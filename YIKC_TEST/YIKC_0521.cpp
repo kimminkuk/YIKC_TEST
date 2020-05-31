@@ -1,12 +1,6 @@
 #include <stdio.h>
 #include <stdint.h>
 
-static void YIKC_TEST_1()
-{
-
-}
-
-
 #define BIT_FAIL(TEST_BIT,j,z) ( ( *(TEST_BIT+j) >> (z)) & 1 )
 
 static void YIKC_TEST_3()
