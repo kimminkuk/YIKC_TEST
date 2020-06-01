@@ -17,6 +17,12 @@ public:
 	int M;
 	int tower[3];
 	int tower_count = 3;
+	int T1_C;
+	int T1_R;
+	int T2_C;
+	int T2_R;
+
+	int** input_data;
 	int** virus;
 	int** virus_pt;
 	int** lab;

@@ -24,10 +24,11 @@ int main()
 	YIKC_TEST_1 TEST1;
 	int N, M = 0;
 	printf("세로, 가로 입력\n");
-	scanf_s("%d %d,", &N, &M);
-	int safe_area = TEST1.MAP(N, M);
+	scanf_s("%d %d", &N, &M);
+	printf("\n");
+	uint32_t safe_area = TEST1.MAP(N, M);
 
-	printf("안전 영역:%d\n", safe_area);
+	printf("\n\n안전 영역:%d\n", safe_area);
 
 #if false
 	YIKC_TEST_2 TEST2;
