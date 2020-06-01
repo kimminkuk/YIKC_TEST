@@ -5,7 +5,7 @@ YIKC_TEST_1::YIKC_TEST_1()
 	err = 0x12345678;
 	N = 0;
 	M = 0;
-	virus_num = 2;
+	virus_num = 0;
 	spread_right = 0;
 	spread_bottom = 0;
 	spread_left = 0;
@@ -22,6 +22,7 @@ YIKC_TEST_1::YIKC_TEST_1()
 void YIKC_TEST_1::YIKC1_SETERROR()
 {
 	printf("errcode:%08X\n",err);
+	printf("TEST FAIL ERROR\n");
 	return;
 }
 
@@ -58,7 +59,19 @@ int YIKC_TEST_1::MAP(const int COL, const int ROW)
 		for (int j = 0; j < M; j++)
 		{
 			scanf_s("%d", &input_data[i][j]);
+			if (input_data[i][j] == 2) virus_num++;
+			if (input_data[i][j] < 0 || input_data[i][j] > 2)
+			{
+				YIKC1_SETERROR();
+				return err;
+			}
 		}
+	}
+
+	if (virus_num < 2 || virus_num > 10)
+	{
+		YIKC1_SETERROR();
+		return err;
 	}
 
 //case1

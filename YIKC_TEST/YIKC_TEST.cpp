@@ -2,9 +2,10 @@
 //
 
 #include "YIKC_TEST.h"
-#include "YIKC_0521.cpp"
 #include "YIKC_TEST_1.h"
 #include "YIKC_TEST_2.h"
+#include "YIKC_TEST_3.h"
+#include "YIKC_TEST_4.h"
 
 // :=   좌변은 우변에 의해 정의됨
 //왼쪽은 OBJECT
@@ -18,31 +19,78 @@
 //6. digit = 숫자
 
 
-
-int main()
+void YIKC1()
 {
 	YIKC_TEST_1 TEST1;
 	int N, M = 0;
-	printf("세로, 가로 입력\n");
+	printf("\n문제 [1]\n");
 	scanf_s("%d %d", &N, &M);
 	printf("\n");
 	uint32_t safe_area = TEST1.MAP(N, M);
 
 	printf("\n\n안전 영역:%d\n", safe_area);
+	printf("\nTEST1 END\n\n");
+}
 
-#if false
+void YIKC2()
+{
+	printf("\n문제 [2]\n");
+	printf("ex) 2+3*4\n연산 입력:");
 	YIKC_TEST_2 TEST2;
-	double result[4] = { 0 };
-	result[0] = TEST2.TG__("2+3*4");
-	result[1] = TEST2.TG__("2*(3+4)");
-	result[2] = TEST2.TG__("1.0/0.5");
-	result[3] = TEST2.TG__("345/12");
-	
-	printf("1 %f\n", result[0]);
-	printf("2 %f\n", result[1]);
-	printf("3 %f\n", result[2]);
-	printf("4 %f\n", result[3]);
-#endif
+	char input[100];	
+	cin >> input;
+
+	double result_ = TEST2.TG__(input);
+	printf("\n%s = %f\n\n", input, result_);
+	printf("\nTEST2 END\n\n");
+}
+
+void YIKC3()
+{
+	printf("\n문제 [3]\n");
+	YIKC_TEST_3 TEST3;
+	TEST3.YIELD();
+	printf("\nTEST3 END\n\n");
+}
+
+void YIKC4()
+{
+	printf("\n문제 [4]\n");
+	YIKC_TEST_4 TEST4;
+	TEST4.SHMOO();
+	printf("\nTEST4 END\n\n");
+}
+
+int main()
+{
+	int test_num = 0;
+	printf("\n코딩 역량 평가 자료\n\n\n");
+	do {
+		printf("TEST1:[1] TEST2:[2] TEST3:[3] TEST4:[4] TESTEND:[5]\n\n");
+		printf("TEST 문제 번호 선택--->");
+		scanf_s("%d", &test_num);
+
+		switch (test_num)
+		{
+		    case 1:
+			    YIKC1();
+				break;
+			case 2:
+				YIKC2();
+				break;
+			case 3:
+				YIKC3();
+				break;
+			case 4:
+				YIKC4();
+				break;
+			default:
+				printf("YIKC TEST END\n");
+				break;
+		}
+
+	} while (test_num <= 4 && test_num > 0);
+
 }
 
 // 프로그램 실행: <Ctrl+F5> 또는 [디버그] > [디버깅하지 않고 시작] 메뉴
